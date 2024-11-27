@@ -66,7 +66,7 @@ const fetchOrderDetails = async (orderId) => {
       <a href="/">Back to orders list</a>
     `;
   } else {
-    content.innerHTML = `<p>Order not found. <a href="/">Back to orders list</a></p>`;
+    content.innerHTML = `<p>Order not found. <a href="/allora/">Back to orders list</a></p>`;
   }
 };
 
