@@ -1,69 +1,89 @@
-/* General body styling for both login and signup pages */
-body {
+/* Define the color palette */
+:root {
+    --primary: #688F4E;
+    --secondary: #96C4C0;
+    --background: #DBEFD7;
+    --light-background: #F4F9F0;
+    --accent: #9B454D;
+    --transparent: rgba(255, 0, 0, 0);
+  }
+  
+  body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: var(--light-background);
+    color: var(--primary);
     margin: 0;
-}
-
-/* Container for the login and signup forms */
-.login-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-}
-
-/* Input field styling */
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Button styling */
-button {
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: var(--primary);
     color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Error message styling */
-#error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* Success message styling */
-#success-message {
-    color: green;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* Link to signup page on login page */
-a {
-    color: #4CAF50;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  
+  #content {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: var(--background);
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  li a {
     text-decoration: none;
-}
-
-a:hover {
+    color: var(--secondary);
+    font-weight: bold;
+  }
+  
+  li a:hover {
+    color: var(--accent);
+  }
+  
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  a:hover {
     text-decoration: underline;
-}
+  }
+  
+  p {
+    background-color: var(--background);
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: var(--accent);
+  }
+  
