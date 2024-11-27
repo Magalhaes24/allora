@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2 id="welcome-message">Welcome, </h2>
+        <p>You have successfully logged in.</p>
+    </div>
+
+    <script>
+        // Function to get the URL parameter
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const paramName = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + paramName + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the username from the URL parameters
+        const username = getParameterByName('username');
+
+        // Set the welcome message
+        if (username) {
+            document.getElementById('welcome-message').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>
