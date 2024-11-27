@@ -52,22 +52,25 @@ const fetchOrders = async () => {
 };
 
 const fetchOrderDetails = async (orderId) => {
-    const content = document.getElementById("content");
-    const orderDoc = await getDoc(doc(db, "orders", orderId));
-    if (orderDoc.exists()) {
-      const data = orderDoc.data();
-      content.innerHTML = `
-        <h2>Order Details</h2>
-        <p><strong>Restaurant:</strong> ${data.restaurantName}</p>
-        <p><strong>Dish:</strong> ${data.selectedDishes[0].name}</p>
-        <p><strong>Price:</strong> $${data.selectedDishes[0].price}</p>
-        <p><strong>User:</strong> ${data.userEmail}</p>
-        <button onclick="window.location.hash='';">Back to Orders List</button>
-      `;
-    } else {
-      content.innerHTML = `<p>Order not found. <button onclick="window.location.hash='';">Back to Orders List</button></p>`;
-    }
-  };
+  const content = document.getElementById("content");
+  const orderDoc = await getDoc(doc(db, "orders", orderId));
+  if (orderDoc.exists()) {
+    const data = orderDoc.data();
+    content.innerHTML = `
+      <h2>Order Details</h2>
+      <p><strong>Restaurant:</strong> ${data.restaurantName}</p>
+      <p><strong>Dish:</strong> ${data.selectedDishes[0].name}</p>
+      <p><strong>Price:</strong> $${data.selectedDishes[0].price}</p>
+      <p><strong>User:</strong> ${data.userEmail}</p>
+      <button onclick="window.location.href='https://magalhaes24.github.io/allora';">Back to Orders List</button>
+    `;
+  } else {
+    content.innerHTML = `
+      <p>Order not found. <button onclick="window.location.href='https://magalhaes24.github.io/allora';">Back to Orders List</button></p>
+    `;
+  }
+};
+
   
 
 // Listen for hash changes
