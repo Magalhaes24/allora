@@ -19,23 +19,20 @@ const db = getFirestore(app);
 // Main function to handle routing
 const main = async () => {
   const content = document.getElementById("content");
-  const ordersList = document.getElementById("orders-list");
-
-  // Get URL hash to determine the page
   const hash = window.location.hash;
 
   if (!hash) {
-    // No hash: Show the list of orders
+    // Show the list of orders
     content.innerHTML = "<ul id='orders-list'></ul>";
     await fetchOrders();
   } else {
-    // Hash present: Show the details of the specific order
-    const orderId = hash.substring(1); // Remove the # from the hash
+    // Show the details of a specific order
+    const orderId = hash.substring(1); // Remove the '#' from the hash
     await fetchOrderDetails(orderId);
   }
 };
 
-// Fetch and display list of orders
+// Fetch and display the list of orders
 const fetchOrders = async () => {
   const ordersList = document.getElementById("orders-list");
   const querySnapshot = await getDocs(collection(db, "orders"));
@@ -44,24 +41,39 @@ const fetchOrders = async () => {
     const li = document.createElement("li");
     li.innerHTML = `
       <a href="#${doc.id}">
-        ${data.restaurantName} - ${data.selectedDishes[0].name} ($${data.selectedDishes[0].price})
+        ${data.restaurantName} - ${data.selectedDishes.map(dish => dish.name).join(", ")}
       </a>
     `;
     ordersList.appendChild(li);
   });
 };
 
+// Fetch and display the details of a single order
 const fetchOrderDetails = async (orderId) => {
   const content = document.getElementById("content");
   const orderDoc = await getDoc(doc(db, "orders", orderId));
+
   if (orderDoc.exists()) {
     const data = orderDoc.data();
+    const dishes = data.selectedDishes
+      .map(
+        (dish) =>
+          `<li><strong>Dish:</strong> ${dish.name} - $${dish.price} <strong>Restrictions:</strong> ${
+            dish.restrictions?.length ? dish.restrictions.join(", ") : "None"
+          }</li>`
+      )
+      .join("");
+
+    const userRestrictions = data.userRestrictions?.length
+      ? data.userRestrictions.join(", ")
+      : "None";
+
     content.innerHTML = `
       <h2>Order Details</h2>
       <p><strong>Restaurant:</strong> ${data.restaurantName}</p>
-      <p><strong>Dish:</strong> ${data.selectedDishes[0].name}</p>
-      <p><strong>Price:</strong> $${data.selectedDishes[0].price}</p>
-      <p><strong>User:</strong> ${data.userEmail}</p>
+      <ul>${dishes}</ul>
+      <p><strong>User Restrictions:</strong> ${userRestrictions}</p>
+      <p><strong>User Email:</strong> ${data.userEmail}</p>
       <button onclick="window.location.href='https://magalhaes24.github.io/allora';">Back to Orders List</button>
     `;
   } else {
@@ -70,8 +82,6 @@ const fetchOrderDetails = async (orderId) => {
     `;
   }
 };
-
-  
 
 // Listen for hash changes
 window.addEventListener("hashchange", main);
