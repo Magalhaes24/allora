@@ -58,9 +58,13 @@ const fetchOrderDetails = async (orderId) => {
     const dishes = data.selectedDishes
       .map(
         (dish) =>
-          `<li><strong>Dish:</strong> ${dish.name} - $${dish.price} <strong>Restrictions:</strong> ${
-            dish.restrictions?.length ? dish.restrictions.join(", ") : "None"
-          }</li>`
+          `<li>
+            <strong>Dish:</strong> ${dish.name} - $${dish.price}
+            <br><strong>Quantity:</strong> ${dish.quantity || "N/A"}
+            <br><strong>Restrictions:</strong> ${
+              dish.restrictions?.length ? dish.restrictions.join(", ") : "None"
+            }
+          </li>`
       )
       .join("");
 
