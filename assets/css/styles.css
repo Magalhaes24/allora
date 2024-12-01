@@ -1,89 +1,104 @@
 /* Define the color palette */
 :root {
-    --primary: #688F4E;
-    --secondary: #96C4C0;
-    --background: #DBEFD7;
-    --light-background: #F4F9F0;
-    --accent: #9B454D;
-    --transparent: rgba(255, 0, 0, 0);
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: var(--light-background);
-    color: var(--primary);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-  }
-  
-  header {
-    background-color: var(--primary);
-    color: white;
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 2rem;
-  }
-  
-  #content {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: var(--background);
-    margin: 0.5rem 0;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  li a {
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: bold;
-  }
-  
-  li a:hover {
-    color: var(--accent);
-  }
-  
-  a {
-    color: var(--primary);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  p {
-    background-color: var(--background);
-    padding: 1rem;
-    border-radius: 5px;
-  }
-  
-  button {
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: var(--accent);
-  }
-  
+  --primary: #688F4E;
+  --secondary: #96C4C0;
+  --background: #DBEFD7;
+  --light-background: #F4F9F0;
+  --accent: #9B454D;
+  --transparent: rgba(255, 0, 0, 0);
+}
+
+/* Import fonts */
+@font-face {
+  font-family: 'Chau Philomene';
+  src: url('../fonts/chau_philomene.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins_regular.ttf') format('truetype');
+}
+
+/* Global Styles */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: var(--light-background);
+  color: var(--primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Chau Philomene', sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+#content {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: var(--background);
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+li a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+li a:hover {
+  color: var(--accent);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  background-color: var(--background);
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+  background-color: var(--accent);
+}
