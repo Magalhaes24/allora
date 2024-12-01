@@ -32,16 +32,23 @@ const main = async () => {
   }
 };
 
-// Fetch and display the list of orders
+// Fetch and display the list of orders, sorted by timestamp
 const fetchOrders = async () => {
   const ordersList = document.getElementById("orders-list");
   const querySnapshot = await getDocs(collection(db, "orders"));
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
+
+  // Extract documents and sort them by timestamp (latest to oldest)
+  const orders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  orders.sort((a, b) => b.timestamp.toDate() - a.timestamp.toDate());
+
+  // Display each order
+  orders.forEach((data) => {
+    const timestamp = data.timestamp.toDate().toLocaleString();
     const li = document.createElement("li");
     li.innerHTML = `
-      <a href="#${doc.id}">
-        ${data.restaurantName} - ${data.selectedDishes.map(dish => dish.name).join(", ")}
+      <a href="#${data.id}">
+        <strong>${data.restaurantName}</strong> - ${data.selectedDishes.map(dish => dish.name).join(", ")}
+        <br><em>${timestamp}</em>
       </a>
     `;
     ordersList.appendChild(li);
@@ -55,6 +62,7 @@ const fetchOrderDetails = async (orderId) => {
 
   if (orderDoc.exists()) {
     const data = orderDoc.data();
+    const timestamp = data.timestamp.toDate().toLocaleString();
     const dishes = data.selectedDishes
       .map(
         (dish) =>
@@ -75,6 +83,7 @@ const fetchOrderDetails = async (orderId) => {
     content.innerHTML = `
       <h2>Order Details</h2>
       <p><strong>Restaurant:</strong> ${data.restaurantName}</p>
+      <p><strong>Timestamp:</strong> ${timestamp}</p>
       <ul>${dishes}</ul>
       <p><strong>User Restrictions:</strong> ${userRestrictions}</p>
       <p><strong>User Email:</strong> ${data.userEmail}</p>
